@@ -145,8 +145,8 @@ class _HomepageState extends State<Homepage> {
                     rating: 4.6,
                   ),
                   ProductWidget(
-                    nama: "Nasi Ayam Geprek",
-                    imageUrl: "assets/ayam copy.png",
+                    nama: "Sate ayam",
+                    imageUrl: "assets/m.jpg",
                     harga: "15000",
                      rating: 4.5,
 
@@ -165,7 +165,7 @@ class _HomepageState extends State<Homepage> {
                   ),
                   ProductWidget(
                     nama: "Nasi Ayam Geprek",
-                    imageUrl: "assets/sate.jpg",
+                    imageUrl: "assets/ayam copy.png",
                     harga: "15000",
                      rating: 4.5,
 

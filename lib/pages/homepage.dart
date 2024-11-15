@@ -132,6 +132,44 @@ class _HomepageState extends State<Homepage> {
                     harga: "20000",
                     rating: 4.8,
                   ),
+                   ProductWidget(
+                    nama: "Nasi Ikan Nila",
+                    imageUrl: "assets/nila.png",
+                    harga: "20000",
+                    rating: 4.8,
+                  ),
+                  ProductWidget(
+                    nama: "Nasi Ayam Geprek",
+                    imageUrl: "assets/ayam copy.png",
+                    harga: "15000",
+                    rating: 4.6,
+                  ),
+                  ProductWidget(
+                    nama: "Nasi Ayam Geprek",
+                    imageUrl: "assets/ayam copy.png",
+                    harga: "15000",
+                     rating: 4.5,
+
+                  ),
+                   ProductWidget(
+                    nama: "Nasi Ikan Nila",
+                    imageUrl: "assets/nila.png",
+                    harga: "20000",
+                    rating: 4.8,
+                  ),
+                  ProductWidget(
+                    nama: "Nasi Ayam Geprek",
+                    imageUrl: "assets/ayam copy.png",
+                    harga: "15000",
+                    rating: 4.6,
+                  ),
+                  ProductWidget(
+                    nama: "Nasi Ayam Geprek",
+                    imageUrl: "assets/sate.jpg",
+                    harga: "15000",
+                     rating: 4.5,
+
+                  ),
                 ],
               ),
             ),

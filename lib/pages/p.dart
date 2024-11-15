@@ -1,5 +1,5 @@
-  import 'package:flutter/material.dart';
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:flutter/material.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:nusantararesto/pages/cartpage.dart';
 import 'package:nusantararesto/pages/homepage.dart';
 import 'package:nusantararesto/pages/orderpage.dart';
@@ -40,22 +40,20 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: _widgetOptions.elementAt(_selectedIndex),
-      bottomNavigationBar: ConvexAppBar(
-  items: [
-    TabItem(icon: Icons.home, title: 'Beranda'),
-    TabItem(icon: Icons.shopping_cart, title: 'Keranjang'),
-    TabItem(icon: Icons.receipt, title: 'Pesanan'),
-  ],
-  initialActiveIndex: _selectedIndex, // Default is the first item.
-  onTap: _onItemTapped,
-  backgroundColor: whiteColor,
-  activeColor: Colors.black,
-  color:  Colors.lime.shade900,
-  height: 49, // Adjust this value to increase or decrease the height
-),
-// const Color(0XFF964B22)
+      bottomNavigationBar: CurvedNavigationBar(
+        items: <Widget>[
+          Icon(Icons.home, size: 30, color: Colors.white),
+          Icon(Icons.shopping_cart, size: 30, color: Colors.white),
+          Icon(Icons.receipt, size: 30, color: Colors.white),
+        ],
+        index: _selectedIndex,
+        onTap: _onItemTapped,
+        backgroundColor: Colors.transparent, // Set transparent background
+        color: Colors.lime.shade900, // Navigation bar color
+        buttonBackgroundColor: Colors.black, // Icon button background color
+        height: 50, // Adjust height of the navigation bar
+      ),
     );
   }
 }

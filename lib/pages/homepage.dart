@@ -13,9 +13,9 @@ class _HomepageState extends State<Homepage> {
 
   // Daftar warna untuk setiap banner card
   final List<Color> bannerColors = [
-    Colors.redAccent,
-    Colors.greenAccent,
-    Colors.blueAccent,
+    Colors.blueGrey,
+    Colors.lime.shade900,
+    Colors.teal,
   ];
 
   @override
@@ -135,9 +135,12 @@ class _HomepageState extends State<Homepage> {
                 ],
               ),
             ),
+            SizedBox(height: 20,),
           ],
         ),
+        
       ),
+      
     );
   }
 
@@ -161,7 +164,7 @@ class _HomepageState extends State<Homepage> {
                     padding: const EdgeInsets.only(left: 16),
                     child: Text(
                       title,
-                      style: secodaryTextstyle.copyWith(
+                      style: whiteTextstyle.copyWith(
                         fontSize: 10,
                       ),
                     ),
@@ -225,7 +228,9 @@ class _HomepageState extends State<Homepage> {
             ),
           ),
         ),
+        
       ],
     );
+    
   }
 }

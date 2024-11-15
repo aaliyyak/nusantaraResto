@@ -222,7 +222,7 @@ class _OrderNowPageState extends State<OrderNowPage> {
                       ),
                     ),
                     value: metodePembayaran,
-                    items: <String>['Cash On Delivery (COD)', 'Transfer Bank']
+                    items: <String>['Transfer Bank', 'Cash On Delivery (COD)']
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -256,7 +256,7 @@ class _OrderNowPageState extends State<OrderNowPage> {
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: TextButton(
-              style: TextButton.styleFrom(backgroundColor: secondaryColor),
+              style: TextButton.styleFrom(backgroundColor: blackColor),
               onPressed: () {
                 Navigator.push(
                     context,

@@ -296,7 +296,7 @@ class _KonfirOrderPageState extends State<KonfirOrderPage> {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextButton(
-              style: TextButton.styleFrom(backgroundColor: secondaryColor),
+              style: TextButton.styleFrom(backgroundColor: blackColor),
               onPressed: () {
                 Navigator.push(
                     context,

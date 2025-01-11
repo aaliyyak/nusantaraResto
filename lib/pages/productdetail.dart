@@ -138,7 +138,7 @@ class _ProductDetailState extends State<ProductDetail> {
               style: blackTextstyle.copyWith(fontWeight: FontWeight.w600),
             ),
             Text(
-              "Burger daging yang rendah lemak, dilengkapi dengan keju,seledri, dan potongan bawang bombai yang lezat.",
+              "Ayam Geprek is a popular Indonesian dish that combines crispy fried chicken with a spicy sambal (chili paste). It is a perfect blend of crunchy, spicy, and savory flavors, making it a favorite among food enthusiasts.",
               style: greyTextstyle.copyWith(fontWeight: FontWeight.w600),
             ),
             SizedBox(height: 20),
@@ -147,7 +147,7 @@ class _ProductDetailState extends State<ProductDetail> {
               style: blackTextstyle.copyWith(fontWeight: FontWeight.w600),
             ),
             Text(
-              "Roti, seledri, wijen, bawang bombai, daging sapi, keju..",
+              "The composition of Ayam Geprek includes crispy fried chicken, chili sambal, garlic, shallots, salt, sugar, steamed rice, and optional sides like tofu, tempeh, or fresh vegetables...",
               style: greyTextstyle.copyWith(fontWeight: FontWeight.w600),
             ),
           ],

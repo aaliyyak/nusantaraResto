@@ -7,7 +7,7 @@ import 'package:nusantararesto/pages/splash.dart';
 void main() => runApp(
   DevicePreview(
     enabled: !kReleaseMode,
-    builder: (context) => MyApp(), // Wrap your app
+    builder: (context) => MyApp(), 
   ),
 );
 

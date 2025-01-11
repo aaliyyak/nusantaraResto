@@ -1,4 +1,4 @@
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:nusantararesto/pages/cartpage.dart';
 import 'package:nusantararesto/pages/homepage.dart';
@@ -26,36 +26,47 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
-    Homepage(), //0
-    CartPage(), //1
-    OrderScreen(), //2
+    Homepage(), // 0
+    CartPage(), // 1
+    OrderScreen(), // 2
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (index >= 0 && index < _widgetOptions.length) {
+      setState(() {
+        _selectedIndex = index;
+        debugPrint("Indeks dipilih: $_selectedIndex");
+      });
+    } else {
+      debugPrint("Indeks tidak valid: $index");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget selectedPage;
+    try {
+      selectedPage = _widgetOptions.elementAt(_selectedIndex);
+    } catch (e) {
+      debugPrint("Kesalahan saat memilih halaman: $e");
+      selectedPage = Homepage(); // Default fallback
+    }
+
     return Scaffold(
-      
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: selectedPage,
       bottomNavigationBar: ConvexAppBar(
-  items: [
-    TabItem(icon: Icons.home, title: 'Beranda'),
-    TabItem(icon: Icons.shopping_cart, title: 'Keranjang'),
-    TabItem(icon: Icons.receipt, title: 'Pesanan'),
-  ],
-  initialActiveIndex: _selectedIndex, // Default is the first item.
-  onTap: _onItemTapped,
-  backgroundColor: whiteColor,
-  activeColor: Colors.black,
-  color:  Colors.lime.shade900,
-  height: 49, // Adjust this value to increase or decrease the height
-),
-// const Color(0XFF964B22)
+        items: const [
+          TabItem(icon: Icons.home, title: 'Beranda'),
+          TabItem(icon: Icons.shopping_cart, title: 'Keranjang'),
+          TabItem(icon: Icons.receipt, title: 'Pesanan'),
+        ],
+        initialActiveIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        backgroundColor: whiteColor,
+        activeColor: Colors.black,
+        color: Colors.lime.shade900,
+        height: 49,
+      ),
     );
   }
 }

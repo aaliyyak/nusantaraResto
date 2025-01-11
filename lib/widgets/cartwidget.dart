@@ -1,20 +1,21 @@
-
 import 'package:flutter/material.dart';
-import 'package:nusantararesto/config/config.dart';
-import 'package:nusantararesto/pages/ordernow.dart';
 import 'package:nusantararesto/themes/themes.dart';
+import 'package:nusantararesto/config/config.dart';
+import 'package:intl/intl.dart';
 
-// ignore: must_be_immutable
 class CartWidget extends StatefulWidget {
-  CartWidget(
-      {super.key,
-      required this.nama,
-      required this.harga,
-      required this.qty,
-      required this.imageUrl});
+  CartWidget({
+    super.key,
+    required this.nama,
+    required this.harga,
+    required this.qty,
+    required this.imageUrl,
+    required this.onQuantityChanged,
+  });
 
-  // variabel utk menerima isian dari si pemanggil widget ini
-  String nama, harga, qty, imageUrl;
+  final String nama, harga, imageUrl;
+  final int qty;
+  final Function(int) onQuantityChanged;
 
   @override
   State<CartWidget> createState() => _CartWidgetState();
@@ -26,13 +27,14 @@ class _CartWidgetState extends State<CartWidget> {
   @override
   void initState() {
     super.initState();
-    quantity = int.tryParse(widget.qty) ?? 1; // Safeguard for invalid integers
+    quantity = widget.qty;
   }
 
   void _increaseQuantity() {
     setState(() {
       quantity++;
     });
+    widget.onQuantityChanged(quantity);
   }
 
   void _decreaseQuantity() {
@@ -40,28 +42,27 @@ class _CartWidgetState extends State<CartWidget> {
       setState(() {
         quantity--;
       });
+      widget.onQuantityChanged(quantity);
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 15),
+      margin: const EdgeInsets.only(bottom: 15),
       width: double.infinity,
       decoration: BoxDecoration(
         color: whiteColor,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(15),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Image.asset(
             widget.imageUrl,
-            width: 150,
-            height: 150,
+            width: 120,
+            height: 120,
           ),
-          // SizedBox(
-          //   width: 20,
-          // ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -71,70 +72,71 @@ class _CartWidgetState extends State<CartWidget> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
+              // Konversi harga string ke integer setelah menghapus titik
               Text(
-                Config.convertToIdr(int.parse(widget.harga), 0),
+                Config.convertToIdr(
+                  int.parse(widget.harga.replaceAll('.', '')), 0),
                 style: greyTextstyle,
               ),
               Row(
                 children: [
-                  Image.asset(
-                    "assets/ic-kurang.png",
-                    width: 24,
-                    height: 24,
+                  GestureDetector(
+                    onTap: _decreaseQuantity,
+                    child: Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.grey[300],
+                      ),
+                      child: const Icon(
+                        Icons.remove,
+                        size: 15,
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
-                  SizedBox(
-                    width: 15,
-                  ),
+                  const SizedBox(width: 15),
                   Text(
-                    widget.qty,
+                    quantity.toString(),
                     style: blackTextstyle.copyWith(
-                      fontSize: 24,
+                      fontSize: 15,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  Image.asset(
-                    "assets/ic-tambah.png",
-                    width: 24,
-                    height: 24,
+                  const SizedBox(width: 15),
+                  GestureDetector(
+                    onTap: _increaseQuantity,
+                    child: Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.grey[300],
+                      ),
+                      child: const Icon(
+                        Icons.add,
+                        size: 15,
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
                 ],
-              ),
-
-              // button pesan
-              SizedBox(height: 8,),
-              Container(
-                width: 84,
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: secondaryColor,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => OrderNowPage(
-                          nama: widget.nama,
-                          harga: widget.harga,
-                          qty: quantity.toString(),
-                          imageUrl: widget.imageUrl,
-                        ),
-                      ),
-                    );
-                  },
-                  
-                  child: Text(
-                    "Pesan",
-                    style: whiteTextstyle,
-                  ),
-                ),
               ),
             ],
           ),
         ],
       ),
     );
+  }
+}
+
+class Config {
+  // Fungsi untuk konversi angka ke format Rupiah
+  static String convertToIdr(int amount, int decimal) {
+    final formatter = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp ',
+      decimalDigits: decimal,
+    );
+    return formatter.format(amount);
   }
 }
